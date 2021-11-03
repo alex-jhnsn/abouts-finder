@@ -6,10 +6,7 @@ chrome.storage.local.get("data", (result) => {
   database = result.data;
 });
 
-const $search = document.getElementById("search");
-const $template = document.getElementById("searchResult");
-
-$search.addEventListener("keyup", e => {
+const searchHandler = (e) => {
   const searchValue = e.target.value.toLowerCase();
 
   const $results = document.getElementById("resultsBox");
@@ -35,7 +32,7 @@ $search.addEventListener("keyup", e => {
     item.addEventListener("click", copyText);
     $results.appendChild(item);
   });
-});
+};
 
 const copyText = (e) => {
   navigator.clipboard.writeText(e.target.closest("button").dataset.link).then(() => {
@@ -49,4 +46,8 @@ const copyText = (e) => {
   });
 
   document.activeElement.blur()
-}
+};
+
+//To account for the clear button
+search.addEventListener("search", searchHandler);
+search.addEventListener("keyup", searchHandler);
