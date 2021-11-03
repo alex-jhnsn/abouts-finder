@@ -2,10 +2,9 @@ const url = chrome.runtime.getURL('data/database.json');
 
 let database;
 
-fetch(url)
-    .then((response) => response.json())
-    .then((json) => { database = json });
-
+chrome.storage.local.get("data", (result) => {
+  database = result.data;
+});
 
 const $search = document.getElementById("search");
 const $template = document.getElementById("searchResult");
@@ -20,11 +19,13 @@ $search.addEventListener("keyup", e => {
   if (searchValue === "")
   return;
 
-  database.forEach(category => {
-    category.Items.filter(item => item.Name.toLowerCase().includes(searchValue)).forEach(filtered => {
+  database
+    .filter(item => 
+      item.Name.toLowerCase().includes(searchValue
+    ))
+    .forEach(filtered => {
       results.push(filtered);
-    })
-  });
+    });
 
   results.forEach(result => {
     const item = document.getElementById("searchResult").content.firstElementChild.cloneNode(true);
