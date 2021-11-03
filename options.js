@@ -1,13 +1,6 @@
-const $addButton = document.getElementById("btnAdd");
-const $name = document.getElementById("txtName");
-const $link = document.getElementById("txtLink");
-
-const $table = document.getElementById("tblData");
-
 let dataCache = [];
 
-chrome.storage.sync.get("data", (result) => {
-
+chrome.storage.local.get("data", (result) => {
   if (!result.data)
     return;
 
@@ -19,14 +12,17 @@ chrome.storage.sync.get("data", (result) => {
 });
 
 const add = () => {
-  dataCache.push({ "Name": $name.value, "Link": $link.value });
-  chrome.storage.sync.set({data: dataCache});
-  addToTable(dataCache.length - 1, $name.value, $link.value);
+  const name = txtName.value;
+  const link = txtLink.value;
+
+  dataCache.push({ "Name": name, "Link": link });
+  chrome.storage.local.set({data: dataCache});
+  addToTable(dataCache.length - 1, name, link);
 }
 
 const remove = (e) => {
   dataCache.splice(e.target.dataset.item, 1);
-  chrome.storage.sync.set({data: dataCache});
+  chrome.storage.local.set({data: dataCache});
   removeFromTable(e.target.dataset.item);
 };
 
@@ -49,7 +45,7 @@ const removeFromTable = (index) => {
   target.parentElement.removeChild(target);
 };
 
-$addButton.addEventListener("click", add);
+btnAdd.addEventListener("click", add);
 
 fileData.addEventListener("change", (e) => {
   console.log("Change");
@@ -58,16 +54,31 @@ fileData.addEventListener("change", (e) => {
     header: true,
     skipEmptyLines: true,
     complete: function(results) {
-      if (results.errors)
-        console.log("oops");
+      if (results.errors.length)
+        window.alert("There were errors in your csv file.");
 
       console.log(results);
       
       dataCache = results.data;
-      chrome.storage.sync.set({data: dataCache});
+      chrome.storage.local.set({data: results.data});
       results.data.forEach((x, i) => {
         addToTable(i, x.Name, x.Link);
       });
     }
   });
+});
+
+btnDownload.addEventListener("click", () => {
+  const csv = Papa.unparse(dataCache);
+
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(csv));
+  element.setAttribute('download', "all-abouts.csv");
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 });

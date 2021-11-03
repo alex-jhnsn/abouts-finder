@@ -13,5 +13,5 @@
     }
   },
   "options_page": "options.html",
-  "permissions": ["scripting", "storage"]
+  "permissions": ["scripting", "storage", "unlimitedStorage"]
 }
