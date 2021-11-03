@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="searchContainer">
+      <i class="icon" aria-hidden="true"><img src="/images/search-solid.svg" /></i>
+      <input id="search" type="search" placeholder="Search..." autofocus />
+    </div>
+    <script defer src="search.js"></script>
+    <div id="resultsBox" class="results"></div>
+    <div class="popup success">Copied link to clipboard successfully.</div>
+    <div class="popup fail">Failed to copy link to clipboard.</div>
+  </body>
+</html>
+
+<template id="searchResult">
+  <button class="resultRow">
+    <div class="info">
+      <span class="name"></span>
+      <span class="link"></span>
+    </div>
+    <img class="copy" src="images/copy-regular.svg" />
+  </button>
+</template>

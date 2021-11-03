@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Url</td>
+        </tr>
+      </thead>
+      <tbody id="tblData">
+      </tbody>
+    </table>
+    <div>
+      <label for="name">Link name</label>
+      <input id="txtName" type="text" placeholder="e.g. Fire and Rescue" name="name" />
+      <label for="name">Link URL</label>
+      <input id="txtLink" type="url" placeholder="e.g. https://www.leicestermercury.co.uk/all-about/leicestershire-fire-and-rescue-service" name="name" />
+      <button id="btnAdd">Add</button>
+    </div>
+  </body>
+  <script src="options.js"></script>
+</html>
+
+<template id="linkTemplate">
+  <tr class="resultRow">
+    <td class="name"></td>
+    <td class="link"></td>
+    <td><button class="btnDelete">Remove</button></td>
+  </tr>
+</template>
