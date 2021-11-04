@@ -1,5 +1,16 @@
 body {
-  background-color: blue;
+  background-color: #fff;
+  padding: 0 24px;
+}
+
+main {
+  display: flex;
+
+  > div {
+    &:last-child {
+      margin-left: auto;
+    }
+  }
 }
 
 .btnDelete {

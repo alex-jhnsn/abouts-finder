@@ -2,32 +2,48 @@
 <html>
   <head>
     <link rel="stylesheet" href="/styles/options.css">
+    <script defer src="/scripts/papaparse.min.js"></script>
+    <script defer src="/scripts/options.js"></script>
   </head>
   <body>
-    <table>
-      <thead>
-        <tr>
-          <td>Name</td>
-          <td>Url</td>
-        </tr>
-      </thead>
-      <tbody id="tblData">
-      </tbody>
-    </table>
-    <div>
-      <label for="name">Link name</label>
-      <input id="txtName" type="text" placeholder="e.g. Fire and Rescue" name="name" />
-      <label for="name">Link URL</label>
-      <input id="txtLink" type="url" placeholder="e.g. https://www.leicestermercury.co.uk/all-about/leicestershire-fire-and-rescue-service" name="name" />
-      <button id="btnAdd">Add</button>
-    </div>
-    <div>
-      <input id="fileData" type="file" name="fileUpload" accept=".csv"/>
-      <button id="btnDownload">Download</button>
-    </div>
+    <h1>Options</h1>
+    <main>
+      <div>
+        <h2>Backup data</h2>
+        <label>Backup your data</label>
+        <p>Download a copy of all of your links to add to a different device or share to a colleague.</p>
+        <button id="btnDownload">Download</button>
+
+        <label for="fileUpload">Restore your data</label>
+        <p>Upload a <em>.csv</em> file of links you want to be able to search through and quickly copy.</p>
+        <input id="fileData" type="file" name="fileUpload" accept=".csv"/>
+      </div>
+
+      <div>
+        <h2>Manage links</h2>
+        <label for="name">Link name</label>
+        <input id="txtName" type="text" placeholder="e.g. Fire and Rescue" name="name" />
+        <label for="name">Link URL</label>
+        <input id="txtLink" type="url" placeholder="e.g. https://www.leicestermercury.co.uk/all-about/leicestershire-fire-and-rescue-service" name="name" />
+        <button id="btnAdd">Add</button>
+
+        <p>All links</p>
+        <table>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Url</td>
+            </tr>
+          </thead>
+          <tbody id="tblData">
+          </tbody>
+        </table>
+      </div>
+  
+    </main>
+   
   </body>
-  <script src="/scripts/options.js"></script>
-  <script src="/scripts/papaparse.min.js"></script>
+
 </html>
 
 <template id="linkTemplate">
