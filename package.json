@@ -1,0 +1,31 @@
+{
+  "name": "abouts-finder",
+  "version": "1.0.0",
+  "description": "A tool to find and copy frequently used links to reference from a user defined list",
+  "private": true,
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "node gulpfile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-jhnsn/abouts-finder.git"
+  },
+  "keywords": [],
+  "author": "Alex Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alex-jhnsn/abouts-finder/issues"
+  },
+  "homepage": "https://github.com/alex-jhnsn/abouts-finder#readme",
+  "devDependencies": {
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "sass": "^1.43.4",
+    "yargs": "^17.2.1"
+  },
+  "dependencies": {
+    "papaparse": "^5.3.1"
+  }
+}
