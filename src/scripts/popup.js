@@ -3,6 +3,9 @@ const url = chrome.runtime.getURL('data/database.json');
 let database;
 
 chrome.storage.local.get("data", (result) => {
+  if (!result.data)
+    chrome.runtime.openOptionsPage();
+
   database = result.data;
 });
 
@@ -24,14 +27,20 @@ const searchHandler = (e) => {
       results.push(filtered);
     });
 
-  results.forEach(result => {
-    const item = document.getElementById("searchResult").content.firstElementChild.cloneNode(true);
-    item.querySelector(".name").innerText = result.Name;
-    item.querySelector('.link').innerText = result.Link;
-    item.dataset.link = result.Link;
-    item.addEventListener("click", copyText);
+  if (results.length) {
+    results.forEach(result => {
+      const item = document.getElementById("searchResult").content.firstElementChild.cloneNode(true);
+      item.querySelector(".name").innerText = result.Name;
+      item.querySelector('.link').innerText = result.Link;
+      item.dataset.link = result.Link;
+      item.addEventListener("click", copyText);
+      $results.appendChild(item);
+    });
+  } else {
+    const empty = document.createElement(p);
+    empty.innerText = "No results found."
     $results.appendChild(item);
-  });
+  }
 };
 
 const copyText = (e) => {
