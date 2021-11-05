@@ -15,9 +15,11 @@ const add = () => {
   const name = txtName.value;
   const link = txtLink.value;
 
-  dataCache.push({ "Name": name, "Link": link });
-  chrome.storage.local.set({data: dataCache});
-  addToTable(dataCache.length - 1, name, link);
+  if (name !== "" && link !== "") {
+    dataCache.push({ "Name": name, "Link": link });
+    chrome.storage.local.set({data: dataCache});
+    addToTable(dataCache.length - 1, name, link);
+  }
 }
 
 const remove = (e) => {

@@ -1,7 +1,9 @@
+@use "sass:map";
 @import "./font.scss";
+@import "./colours.scss";
 
 body {
-  background-color: #fff;
+  background-color: map.get($monotone, "light");
   padding: 0 24px;
   @include fontNormal;
 }
@@ -26,7 +28,7 @@ input[type="text"], input[type="url"] {
 }
 
 .widget {
-  background-color: #fff;
+  background-color: map.get($monotone, "light");
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.29);
   border-radius: 12px;
   padding: 20px;
@@ -105,23 +107,23 @@ input[type="text"], input[type="url"] {
   cursor: pointer;
 
   &.primary {
-    background-color: #4E00FF;
+    background-color: map.get($primary, "base");
     border: none;
-    color: white;
+    color: map.get($monotone, "light");
 
     &:hover {
-      background-color: #7133ff;
+      background-color: map.get($primary, "med");
     }
   }
 
   &.secondary {
-    border: 2px solid #4E00FF;
+    border: 2px solid map.get($primary, "base");
     background: none;
-    color: #4E00FF;
+    color: map.get($primary, "base");
 
     &:hover {
-      background-color: #4E00FF;
-      color: white;
+      background-color: map.get($primary, "base");
+      color: map.get($monotone, "light");
     }
   }
 }
@@ -162,7 +164,7 @@ footer {
   }
 
   p {
-    color: black;
+    color: map.get($monotone, "dark");
     @include fontBold;
     font-size: 16px;
 
@@ -173,7 +175,7 @@ footer {
   }
 
   a {
-    color: black;
+    color: map.get($monotone, "dark");
     @include fontNormal;
     font-size: 16px;
   }

@@ -1,10 +1,11 @@
+@use "sass:map";
 @import "./font.scss";
+@import "./colours.scss";
 
 body {
   width: 400px;
   transition: 0.5s linear;
   margin: 0;
-  background: rgba(255, 255, 255, 0);
 }
 
 .searchContainer {
@@ -27,7 +28,7 @@ body {
     width: 100%;
     height: 45px;
     border: none;
-    border-bottom: 1px solid #b9b9bf;
+    border-bottom: 1px solid map.get($monotone, "base");
     -webkit-appearance: none;
     outline: none;
     padding: 12px;
@@ -52,11 +53,11 @@ body {
   text-align: left;
 
   &:not(:first-child) {
-    border-top: 1px solid #b9b9bf;
+    border-top: 1px solid map.get($monotone, "base");
   }
 
   &:hover,&:focus {
-    background-color: #e7f3fd;
+    background-color: map.get($primary, "light");
 
     .copy {
       filter: invert(34%) sepia(73%) saturate(1042%) hue-rotate(180deg) brightness(79%) contrast(106%);
@@ -107,13 +108,13 @@ body {
   transition: 0.3s ease-in-out;
 
   &.success {
-    background-color: #b7e4c7;
-    color: #081c15;
+    background-color: map.get($success, "light");
+    color: map.get($success, "dark");
   }
 
   &.fail {
-    background-color: #ff8fa3;
-    color: #590d22;
+    background-color: map.get($error, "light");
+    color: map.get($error, "dark");
   }
 
   &.show {
