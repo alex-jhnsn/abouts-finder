@@ -8,48 +8,61 @@
   <body>
     <h1>Options</h1>
     <main>
-      <div>
+      <div class="widget">
         <h2>Backup data</h2>
-        <label>Backup your data</label>
-        <p>Download a copy of all of your links to add to a different device or share to a colleague.</p>
-        <button id="btnDownload">Download</button>
+        <div class="formElement">
+          <div class="labels">
+            <label for="fileUpload">Restore your data</label>
+            <p>Upload a <em>.csv</em> file of that contains links you want to be able to search and copy.</p>
+          </div>
+          <div class="inputWrapper">
+            <input id="fileData" type="file" name="fileUpload" accept=".csv"/>
+            <button id="btnRestore" class="button primary">Restore</button>
+          </div>
+        </div>
 
-        <label for="fileUpload">Restore your data</label>
-        <p>Upload a <em>.csv</em> file of links you want to be able to search through and quickly copy.</p>
-        <input id="fileData" type="file" name="fileUpload" accept=".csv"/>
+        <div class="formElement inline">
+          <div class="labels">
+            <label>Backup your data</label>
+            <p>Download a copy of your links to keep them safe, transfer to another device or share..</p>
+          </div>
+          <button id="btnDownload" class="button primary">Download</button>
+        </div>
       </div>
 
-      <div>
+      <div class="widget">
         <h2>Manage links</h2>
-        <label for="name">Link name</label>
-        <input id="txtName" type="text" placeholder="e.g. Fire and Rescue" name="name" />
-        <label for="name">Link URL</label>
-        <input id="txtLink" type="url" placeholder="e.g. https://www.leicestermercury.co.uk/all-about/leicestershire-fire-and-rescue-service" name="name" />
-        <button id="btnAdd">Add</button>
+        <div class="formRow">
+          <div class="formElement">
+            <label for="name">Link name</label>
+            <input id="txtName" type="text" placeholder="e.g. Fire and Rescue" name="name" />
+          </div>
+          <div class="formElement">
+            <label for="name">Link URL</label>
+            <input id="txtLink" type="url" placeholder="e.g. https://www.leicestermercury.co.uk/all-about/leicestershire-fire-and-rescue-service" name="name" />
+          </div>
+          <button id="btnAdd" class="button primary">Add</button>
+        </div>
 
-        <p>All links</p>
+        <hr/>
+
         <table>
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Url</td>
-            </tr>
-          </thead>
-          <tbody id="tblData">
-          </tbody>
+          <tbody id="tblData"></tbody>
         </table>
       </div>
-  
     </main>
-   
+    <footer>
+      <div>
+        <p>Made by Alex<span>|</span></p><a href="https://github.com/alex-jhnsn" target="_blank" rel="noreferrer">github.com/alex-jhnsn</a>
+      </div>
+    </footer>
   </body>
-
 </html>
 
 <template id="linkTemplate">
   <tr class="resultRow">
     <td class="name"></td>
     <td class="link"></td>
-    <td><button class="btnDelete">Remove</button></td>
+    <td class="buttonCell"><button class="btnDelete button secondary">Remove</button></td>
   </tr>
 </template>

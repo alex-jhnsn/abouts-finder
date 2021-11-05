@@ -45,27 +45,39 @@ const removeFromTable = (index) => {
   target.parentElement.removeChild(target);
 };
 
+const reset = () => {
+  tblData.innerText = "";
+  dataCache = [];
+  chrome.storage.local.set({data: []});
+};
+
 btnAdd.addEventListener("click", add);
 
-fileData.addEventListener("change", (e) => {
-  console.log("Change");
+btnRestore.addEventListener("click", () => {
+  if(!fileData.files.length) {
+    window.alert("You need to select a file");
+    return;
+  }
 
-  Papa.parse(e.target.files[0], {
-    header: true,
-    skipEmptyLines: true,
-    complete: function(results) {
-      if (results.errors.length)
-        window.alert("There were errors in your csv file.");
-
-      console.log(results);
-      
-      dataCache = results.data;
-      chrome.storage.local.set({data: results.data});
-      results.data.forEach((x, i) => {
-        addToTable(i, x.Name, x.Link);
-      });
-    }
-  });
+  if (!dataCache.length || window.confirm("This will overwrite all your existing links, are you sure you wish to restore from a backup?")) {
+    Papa.parse(fileData.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        if (results.errors.length) {
+          window.alert("Your file is not valid, please check it for any errors and try again.");
+          return;
+        }
+        
+        reset();
+        dataCache = results.data;
+        chrome.storage.local.set({data: results.data});
+        results.data.forEach((x, i) => {
+          addToTable(i, x.Name, x.Link);
+        });
+      }
+    });
+  }
 });
 
 btnDownload.addEventListener("click", () => {
