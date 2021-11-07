@@ -17,6 +17,18 @@
       "128": "/images/icon128.png"
     }
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+L",
+        "windows": "Alt+L",
+        "mac": "Alt+L",
+        "chromeos": "Alt+L",
+        "linux": "Alt+L"
+      },
+      "description": "Search for a link."
+    }
+  },
   "options_page": "options.html",
   "permissions": ["scripting", "storage", "unlimitedStorage"]
 }

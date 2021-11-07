@@ -5,7 +5,7 @@
   "private": true,
   "main": "gulpfile.js",
   "scripts": {
-    "build": "gulp",
+    "build": "gulp build",
     "dev": "gulp --watch"
   },
   "repository": {
