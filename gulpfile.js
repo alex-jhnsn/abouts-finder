@@ -1,5 +1,6 @@
 const gulp = require("gulp"),
-      del = require("del");
+      del = require("del"),
+      zip = require("gulp-zip");
 
 const sass = require("gulp-sass")(require("sass"));
 const argv = require("yargs").argv;
@@ -35,4 +36,11 @@ const buildStyles = () => {
     .pipe(gulp.dest('./build/styles'));
 };
 
+const compress = () => {
+  return gulp.src("./build/**/*.*")
+    .pipe(zip("build.zip"))
+    .pipe(gulp.dest("./"));
+};
+
+exports.build = gulp.series(clean, copyFiles, buildStyles, compress);
 exports.default = gulp.series(clean, copyFiles, buildStyles, watch);
