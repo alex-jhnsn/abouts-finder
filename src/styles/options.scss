@@ -6,6 +6,10 @@ body {
   background-color: map.get($monotone, "light");
   padding: 0 24px;
   @include fontNormal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 
 body, body * {
@@ -155,6 +159,7 @@ table {
 }
 
 footer {
+  margin-top: auto;
   display: flex;
 
   > div {
