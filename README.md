@@ -1,7 +1,35 @@
 # abouts-finder
 A tool to find and copy frequently used links to reference from a user defined list.
 
-## Development
+[![Available on the Chrome Web Store](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/tbyBjqi7Zu733AAKA5n4.png)](https://chrome.google.com/webstore/detail/all-abouts-finder/kmnoffbmeiphfoaiopaecbmncibcpncf)
+
+## Using the extension
+1. Download and install the extension from the [chrome web store](https://chrome.google.com/webstore/detail/all-abouts-finder/kmnoffbmeiphfoaiopaecbmncibcpncf).
+2. Click the extension icon or open the extensions options page.
+3. Add your links. There are two ways to do this
+   1. Add links one by one, this is good if you are starting from scratch.
+   2. Upload a `.csv` file containing all your links.
+4. Close the options page and click the extension icon again and start searching.
+5. Enjoy.
+
+### CSV File Format
+The extension requires that the CSV files used follow a certain format.
+
+```
+Name,Link
+Example Link Name,https://www.example.com/example
+Example Link Name 2,https://www.example.com/example-2
+Example Link Name 3,https://www.example.com/example-3
+Example Link Name 4,https://www.example.com/example-4
+```
+
+[This](https://www.solveyourtech.com/save-csv-google-sheets/) is a good guide as to how to create a .csv file using Google Sheets.
+
+Your spreadsheet needs two columns with the first cell in each column containing `Name` and `Link`, make sure the column titles casing are as per the examples.
+
+Then add your links to the rows one after the other, ensuring that you leave no blank spaces. When you export your *.csv* file it should look like the example above.
+
+## Developers
 
 ### Prerequesites
 To get this project running locally you will need:
