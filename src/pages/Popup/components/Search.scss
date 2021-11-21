@@ -1,0 +1,59 @@
+$primary: ("light": #e7ddff, "med": #7133ff, "base": #4E00FF);
+$monotone: ("light": #ffffff, "base": #b9b9bf, "dark": #000000);
+$success: ("light": #b7e4c7, "dark": #081c15);
+$error: ("light": #ff8fa3, "dark": #590d22);
+
+$filters: (
+  "primaryMed": invert(22%) sepia(49%) saturate(7151%) hue-rotate(255deg) brightness(101%) contrast(102%),
+  "primaryBase": invert(12%) sepia(95%) saturate(7155%) hue-rotate(261deg) brightness(96%) contrast(137%),
+  "monotoneBase": invert(80%) sepia(5%) saturate(210%) hue-rotate(201deg) brightness(93%) contrast(91%),
+);
+
+.searchContainer {
+  position:relative;
+
+  > i {
+    position:absolute;
+    left:-2px;
+    top:5px;
+    padding:10px 10px;
+
+    > img {
+      width: 16px;
+      height: 16px;
+      filter: map-get($filters, monotoneBase);
+    }
+  }
+
+  input {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-bottom: 1px solid map-get($monotone, "base");
+    -webkit-appearance: none;
+    outline: none;
+    padding: 12px;
+    padding-left:36px;
+  }
+}
+
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 1em;
+  width: 1em;
+  border-radius: 50em;
+  background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg) no-repeat 50% 50%;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type="search"]:focus::-webkit-search-cancel-button {
+  opacity: .3;
+  pointer-events: all;
+}
+
+input[type="search"].dark::-webkit-search-cancel-button {
+  filter: invert(1);
+}
