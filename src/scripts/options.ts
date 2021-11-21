@@ -1,4 +1,11 @@
-let dataCache = [];
+import Papa from "papaparse";
+import { getAllLinks, addLink, Link } from "./data";
+
+const init = () => {
+  getAllLinks().forEach((l, i) => {
+    addToTable(i, l);
+  });
+}
 
 chrome.storage.local.get("data", (result) => {
   if (!result.data)
@@ -19,6 +26,8 @@ const add = () => {
     dataCache.push({ "Name": name, "Link": link });
     chrome.storage.local.set({data: dataCache});
     addToTable(dataCache.length - 1, name, link);
+    txtName.value = "";
+    txtLink.value = "";
   }
 }
 
@@ -28,18 +37,20 @@ const remove = (e) => {
   removeFromTable(e.target.dataset.item);
 };
 
-const addToTable = (index, name, link) => {
+const addToTable = (index: number, link: Link) => {
   const row = linkTemplate.content.firstElementChild.cloneNode(true);
   row.id = "row-" + index; 
 
-  row.querySelector(".name").innerText = name;
-  row.querySelector(".link").innerText = link;
+  row.querySelector(".name").innerText = link.Name;
+  row.querySelector(".link").innerText = link.Link;
 
   const btn = row.querySelector(".btnDelete");
   btn.dataset.item = index;
   btn.addEventListener("click", remove);
 
   tblData.appendChild(row);
+
+  
 };
 
 const removeFromTable = (index) => {

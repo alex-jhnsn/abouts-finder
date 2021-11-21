@@ -1,6 +1,6 @@
 const url = chrome.runtime.getURL('data/database.json');
 
-let database;
+let database: [];
 
 chrome.storage.local.get("data", (result) => {
   if (!result.data)
